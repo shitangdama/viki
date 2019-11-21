@@ -1,0 +1,38 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: code-test
+  image: golang
+  environment:
+    GO111MODULE: on
+    GOPROXY: "https://goproxy.io"
+  commands:
+  - go test
+  when:
+    branch:
+      include:
+        - feature/*
+        - master
+        - dev
+    event:
+      include:
+        - push
+        - pull_request
+
+- name: build-docker
+  image: plugins/docker
+  settings:
+    registry: registry.shitangdama.cn
+    repo: registry.shitangdama.cn/dama/viki
+    dockerfile: Dockerfile
+    username: shitangdama
+    password:
+      from_secret: docker_password
+    tag:
+      - latest
+  when:
+    branch:
+      - master

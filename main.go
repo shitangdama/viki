@@ -1,33 +1,28 @@
 package main
 
 import (
-	"fmt"
+	"viki/models"
 
-	"github.com/jinzhu/gorm"
+	"github.com/gin-gonic/gin"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-type User struct {
-	gorm.Model
-	Name string
-}
-
 func init() {
-
+	models.Setup()
 }
 
 func main() {
-	db, err := gorm.Open("postgres", "host=localhost port=5432 user=shitangdama dbname=gaki password=kbr199sd5shi sslmode=disable")
-	if err != nil {
-		fmt.Println(err)
-		db.Close()
-	}
-	db.AutoMigrate(&User{})
+	r := gin.Default()
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong",
+		})
+	})
 
-	user := User{Name: "Jinzhu"}
-	db.Create(&user)
-	result := db.Where("name = ?", "jinzhu").First(&user)
-	fmt.Println(result)
-
-	defer db.Close()
+	r.GET("/ping", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong",
+		})
+	})
+	r.Run(":3000")
 }

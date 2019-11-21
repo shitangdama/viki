@@ -1,5 +1,5 @@
 base项目
-1
+
 表a, id自增主键, date索引
 语句1: select * from a where id > x and id < y and date < xx
 语句2: select * from a where date < xx and id > x and id < y

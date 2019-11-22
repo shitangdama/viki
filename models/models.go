@@ -10,7 +10,7 @@ var db *gorm.DB
 
 func Setup() {
 	var err error
-	db, err = gorm.Open("postgres", "host= master-postgres.default port=5432 user=shitangdama dbname=gaki password=kbr199sd5shi sslmode=disable")
+	db, err = gorm.Open("postgres", "host= master-postgres.default port=5432 user=shitangdama dbname=viki_pro password=kbr199sd5shi sslmode=disable")
 
 	if err != nil {
 		log.Fatalf("models.Setup err: %v", err)

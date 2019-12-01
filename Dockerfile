@@ -6,6 +6,7 @@ WORKDIR /build
 COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o demo .
+RUN swag init
 
 
 FROM  alpine:3.10

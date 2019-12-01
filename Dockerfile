@@ -16,5 +16,6 @@ WORKDIR /app
 
 EXPOSE 3000
 COPY --from=builder /build/demo /app/
+COPY --from=builder /build/docs /app/docs
 
 CMD ["./demo"]

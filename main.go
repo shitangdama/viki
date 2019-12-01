@@ -1,11 +1,13 @@
 package main
 
 import (
+	"log"
 	"fmt"
 	"net/http"
 	"viki/controllers"
 	"viki/common"
 	"viki/model"
+	"viki/pkg/logging"
 
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
@@ -14,6 +16,7 @@ func init() {
 	common.ConfigSetup()
 	common.DBSetup()
 	model.Migration()
+	logging.Setup()
 }
 
 func main() {
@@ -27,5 +30,7 @@ func main() {
 		MaxHeaderBytes: 1 << 20,
 	}
 
+
+	log.Printf("[info] start http server listening %s", ":8080")
 	s.ListenAndServe()
 }

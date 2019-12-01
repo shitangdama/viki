@@ -1,6 +1,7 @@
 package model
 
 import (
+	"errors"
 	"github.com/jinzhu/gorm"
 	"github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/lib/pq"
@@ -46,7 +47,7 @@ func GetArticle(id int) (*Article, error) {
 	db := common.GetDB()
 	err := db.First(&article, id).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, err
+		return nil, errors.New("Invalid Id")
 	}
 
 	return &article, nil

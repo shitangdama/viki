@@ -1,8 +1,10 @@
 package controllers
 
 import (
+	_ "viki/docs"
 	v1 "viki/controllers/api/v1"
-
+	"github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -18,6 +20,7 @@ func InitRouter() *gin.Engine {
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	apiv1 := r.Group("/api/v1")
 

@@ -1,0 +1,74 @@
+info:
+  contact: {}
+  license: {}
+paths:
+  /api/v1/aticles:
+    post:
+      consumes:
+      - application/json
+      description: 新增文章
+      parameters:
+      - description: Article ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 新增文章
+  /api/v1/aticles/:
+    put:
+      consumes:
+      - application/json
+      description: 修改文章
+      parameters:
+      - description: Article ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Tags
+        in: body
+        name: tags
+        schema:
+          items:
+            type: string
+          type: string
+      - description: Title
+        in: body
+        name: title
+        required: true
+        schema:
+          type: string
+      - description: Source
+        in: body
+        name: source
+        schema:
+          type: string
+      - description: Content
+        in: body
+        name: content
+        required: true
+        schema:
+          type: string
+      - description: Info
+        in: body
+        name: info
+        required: true
+        schema:
+          $ref: '#/definitions/map%5Bstring%5Dinterface%7B%7D'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 修改文章
+swagger: "2.0"

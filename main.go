@@ -1,28 +1,31 @@
 package main
 
 import (
-	"viki/models"
+	"fmt"
+	"net/http"
+	"viki/controllers"
+	"viki/common"
+	"viki/model"
 
-	"github.com/gin-gonic/gin"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 func init() {
-	models.Setup()
+	common.ConfigSetup()
+	common.DBSetup()
+	model.Migration()
 }
 
 func main() {
-	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	router := controllers.InitRouter()
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run(":3000")
+	s := &http.Server{
+		Addr:    fmt.Sprintf(":8080"),
+		Handler: router,
+		// ReadTimeout:    setting.ReadTimeout,
+		// WriteTimeout:   setting.WriteTimeout,
+		MaxHeaderBytes: 1 << 20,
+	}
+
+	s.ListenAndServe()
 }

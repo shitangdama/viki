@@ -14,7 +14,7 @@ require (
 	github.com/go-openapi/spec v0.19.4 // indirect
 	github.com/go-playground/universal-translator v0.17.0 // indirect
 	github.com/gosimple/slug v1.9.0
-	github.com/jinzhu/gorm v1.9.11
+	github.com/jinzhu/gorm v1.9.15
 	github.com/json-iterator/go v1.1.8 // indirect
 	github.com/kr/pty v1.1.8 // indirect
 	github.com/leodido/go-urn v1.2.0 // indirect
@@ -27,10 +27,7 @@ require (
 	github.com/swaggo/swag v1.6.3
 	github.com/unknwon/com v1.0.1
 	github.com/urfave/cli v1.22.2 // indirect
-	golang.org/x/crypto v0.0.0-20191128160524-b544559bb6d1 // indirect
-	golang.org/x/net v0.0.0-20191126235420-ef20fe5d7933 // indirect
 	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e // indirect
-	golang.org/x/sys v0.0.0-20191128015809-6d18c012aee9 // indirect
 	golang.org/x/tools v0.0.0-20191130070609-6e064ea0cf2d // indirect
 	golang.org/x/xerrors v0.0.0-20191011141410-1b5146add898 // indirect
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect

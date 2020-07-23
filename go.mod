@@ -10,8 +10,6 @@ require (
 	github.com/gin-contrib/cors v1.3.0
 	github.com/gin-gonic/gin v1.5.0
 	github.com/go-ini/ini v1.51.0
-	github.com/go-openapi/jsonreference v0.19.3 // indirect
-	github.com/go-openapi/spec v0.19.4 // indirect
 	github.com/go-playground/universal-translator v0.17.0 // indirect
 	github.com/gosimple/slug v1.9.0
 	github.com/jinzhu/gorm v1.9.11
@@ -24,7 +22,7 @@ require (
 	github.com/smartystreets/goconvey v1.6.4 // indirect
 	github.com/stamblerre/gocode v1.0.0 // indirect
 	github.com/swaggo/gin-swagger v1.2.0
-	github.com/swaggo/swag v1.6.3
+	github.com/swaggo/swag v1.6.7
 	github.com/unknwon/com v1.0.1
 	github.com/urfave/cli v1.22.2 // indirect
 	golang.org/x/crypto v0.0.0-20191128160524-b544559bb6d1 // indirect

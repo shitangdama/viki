@@ -9,7 +9,7 @@ require (
 	github.com/ghodss/yaml v1.0.0
 	github.com/gin-contrib/cors v1.3.0
 	github.com/gin-gonic/gin v1.5.0
-	github.com/go-ini/ini v1.51.0
+	github.com/go-ini/ini v1.61.0
 	github.com/go-openapi/jsonreference v0.19.3 // indirect
 	github.com/go-openapi/spec v0.19.4 // indirect
 	github.com/go-playground/universal-translator v0.17.0 // indirect

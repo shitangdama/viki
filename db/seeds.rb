@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+unless User.find_by(email: '1@qq.com').present?
+  User.create username: 'Admin', email: '1@qq.com', password: '123456', master: true
+end

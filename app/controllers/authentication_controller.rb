@@ -1,26 +1,22 @@
 class AuthenticationController < ActionController::API
-    # skip_before_action :configure_permitted_parameters
-
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
-  def configure_permitted_parameters
-    update_attrs = %i[password password_confirmation current_password]
-    devise_parameter_sanitizer.permit :account_update, keys: update_attrs
-
-    if controller_name == 'registrations'
-      unless %w[edit update].include? action_name
-        render nothing: true, status: 404
-        return
-      end
+  # skip_before_action :configure_permitted_parameters
+  def authenticate
+    user = User.find_by(name: params[:username])
+    user = User.find_for_authentication(name: params[:username])
+    if user.present? && user.valid_password?(params[:password])
+      render json: user, status: :ok
+    else
+      render json: { error: "user is not exist" }, status: :unauthorized
     end
   end
 
-  private
-  def after_sign_in_path_for(resource)
-    admin_root_path
-  end
-
-  def after_sign_out_path_for(resource)
-    new_user_session_path
+  def authed_user
+    username = params[:username]
+    @user = User.find_by(name: username)
+    if @user
+      render json: @user, status: 200
+    else
+      render json: { error: "Resource not found." }, status: 404
+    end
   end
 end

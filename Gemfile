@@ -22,12 +22,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'pg'
 gem 'devise'
 gem 'kaminari'
-# gem 'bootstrap', '~> 5.0.0.alpha2'
-
-
-group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
 
 group :development do
   gem 'capistrano'

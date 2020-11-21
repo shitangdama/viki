@@ -53,3 +53,5 @@ set :puma_init_active_record, true
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_restart_command, 'bundle exec puma'
+
+after 'deploy:updated', 'webpacker:precompile'

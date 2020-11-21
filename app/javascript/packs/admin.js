@@ -10,5 +10,5 @@ import './volt'
 
 import 'styles/admin'
 
-const images = require.context('../images', true)
-const imagePath = (name) => images(name, true)
+// const images = require.context('../images', true)
+// const imagePath = (name) => images(name, true)

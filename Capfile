@@ -31,7 +31,7 @@ require "capistrano/yarn"
 require "capistrano/bundler"
 require "capistrano/rails/assets"
 require "capistrano/rails/migrations"
-require 'capistrano/rails/assets'
+# require 'capistrano/rails/assets'
 require 'capistrano/puma'
 # require "capistrano/passenger"
 install_plugin Capistrano::Puma

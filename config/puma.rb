@@ -32,7 +32,20 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # before forking the application. This takes advantage of Copy On Write
 # process behavior so workers use less memory.
 #
-# preload_app!
+preload_app!
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+
+
+on_worker_boot do
+  ActiveSupport.on_load(:active_record) do
+    ActiveRecord::Base.establish_connection
+  end
+end
+
+before_fork do
+  ActiveRecord::Base.connection_pool.disconnect!
+end
+
+daemonize true

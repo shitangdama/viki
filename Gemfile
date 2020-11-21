@@ -25,6 +25,7 @@ gem 'kaminari'
 
 group :development do
   gem 'capistrano'
+  gem 'capistrano-rvm'
   gem 'capistrano-yarn'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'

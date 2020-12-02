@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   
   
+  resources :spread_trends
   devise_for :users
   post 'authenticate', to: 'authentication#authenticate'
   post 'authed_user', to: 'authentication#authed_user'
@@ -10,11 +11,11 @@ Rails.application.routes.draw do
   resources :message
   namespace :admin do
     root to: 'message#index' 
-    resources :users do
-      member do
-        # get :articles_index
-        # get :user_info
-    end
+    resources :user do
+    #   member do
+    #     # get :articles_index
+    #     # get :user_info
+    # end
     end
 
     resources :message

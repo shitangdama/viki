@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Spread Trends</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spread_trends.each do |spread_trend| %>
+      <tr>
+        <td><%= link_to 'Show', spread_trend %></td>
+        <td><%= link_to 'Edit', edit_spread_trend_path(spread_trend) %></td>
+        <td><%= link_to 'Destroy', spread_trend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spread Trend', new_spread_trend_path %>

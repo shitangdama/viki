@@ -25,6 +25,9 @@ gem 'kaminari'
 
 gem 'tzinfo-data'
 
+gem 'sidekiq'
+gem 'rest-client'
+
 group :development do
   gem 'capistrano'
   gem 'capistrano-rvm'

@@ -1,17 +1,61 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if message.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+  
+<%= form_with(model: [:admin, user], local: true) do |f| %>
+  <div class="card rounded-0">
+    <div class="card-body"  style="background:#F6F7F9;" >
+      <div class="col-md-8 order-md-1">
+        <div class="row">
+          <div class="col-md-7 mb-3">
+            <label for="exampleInputEmail1">User Name</label>
+            <%= f.text_field :name, class: 'form-control', placeholder: "Name", required: true %>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="state">Role</label>
+            <%= f.collection_select :group_id, Group.all, :id, :name, {}, {:class=> "custom-select d-block w-100"} %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7 mb-3">
+            <label for="exampleInputEmail1">Email Address</label>
+            <%= f.email_field :email, autofocus: true, placeholder: "Email address", class: "form-control", required: true %>
+          </div>
+        </div>
 
-      <ul>
-        <% message.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="Password1">Password</label>
+            <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="Password2">Password Confirmation</label>
+            <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row pt-3 pb-0">
+        <label class="col-sm-2 col-form-label text-center text-muted">权限:</label>
+        <div class="form-inline col-md-10">
+        <%= f.fields_for :authority do |a| %>
+          <% User::AUTHORITY.each do |name| %>
+              <div class="col-sm-3 form-group form-check">
+                <div>
+                <label class="form-check-label" for="exampleCheck1"><%= name %></label>
+                </div>
+                <div  class="px-2">
+                <%= a.check_box name, { checked: "#{'checked' if user.check_authority?(name)}"} %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="card-footer text-muted d-flex justify-content-between align-items-center" style="background:#FAFBFC;">
+      <%= link_to '后退', admin_users_path, class: 'btn btn-sm btn-outline-secondary' %>
+      <%= f.submit "提交", class: "btn btn-sm btn-success" %>
+    </div>  
   </div>
 <% end %>

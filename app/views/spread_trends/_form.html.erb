@@ -1,0 +1,17 @@
+<%= form_with(model: spread_trend, local: true) do |form| %>
+  <% if spread_trend.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(spread_trend.errors.count, "error") %> prohibited this spread_trend from being saved:</h2>
+
+      <ul>
+        <% spread_trend.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

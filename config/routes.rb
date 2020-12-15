@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   
   
+  resources :segments
+  resources :shares
   resources :spread_trends
   devise_for :users
   post 'authenticate', to: 'authentication#authenticate'

@@ -1,16 +1,16 @@
-class Fund::Info
-
-
-
-    def get_stock_value
+class Base::Segment
+    
+    def get_segment
         r = RestClient::Request.execute(
             method: :get, 
-            url: 'https://danjuanapp.com/djapi/fundx/activity/user/vip_valuation/show/detail?source=jiucai',
+            url: 'http://quote.eastmoney.com/center/api/sidemenu.json',
             "headers"=>{
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.11 Safari/537.36"
             }
         )
-        result = JSON.parse(r.body)
-        result
     end
+    
+
+
+
 end

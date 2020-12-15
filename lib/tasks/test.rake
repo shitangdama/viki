@@ -4,8 +4,8 @@
 namespace :test do
     desc "This task does nothing"
     task :generate => :environment do
-        fund = Fund::Info.new()
-        result = fund.get_stock_value()
+        info = Base::Info.new()
+        result = info.get_stock_value()
 
         if result.present?
             spread_trends = result["data"]["spread_trends"]
@@ -41,5 +41,16 @@ namespace :test do
     # rake "hello[World]" 
     task :hello, [:message]  => :environment  do |t, args|
         puts args
+    end
+
+    task :shares => :environment do
+
+
+    end
+# RAILS_ENV=development  rake test:segments
+    task :segments => :environment do
+        Rails.env = "development"
+        segment = Crawler::Segment.new()
+        segment.get_or_update_segment()
     end
 end

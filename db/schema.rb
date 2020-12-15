@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_18_150532) do
+ActiveRecord::Schema.define(version: 2020_12_13_093324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,36 @@ ActiveRecord::Schema.define(version: 2020_11_18_150532) do
     t.string "source", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "segments", force: :cascade do |t|
+    t.string "source", default: "", null: false
+    t.string "segment_type", default: "", null: false
+    t.string "key", default: "", null: false
+    t.string "title", default: "", null: false
+    t.jsonb "info", default: {}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shares", force: :cascade do |t|
+    t.string "code", default: "", null: false
+    t.string "name", default: "", null: false
+    t.jsonb "info", default: {}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "spread_trends", force: :cascade do |t|
+    t.integer "time", null: false
+    t.string "comment", default: ""
+    t.string "spread_td", default: "0.0"
+    t.float "spread", default: 0.0
+    t.float "ashares_total_percent", default: 0.0
+    t.float "wind_all_ashares_range", default: 0.0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["time"], name: "index_spread_trends_on_time", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,6 +65,20 @@ ActiveRecord::Schema.define(version: 2020_11_18_150532) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "valuations", force: :cascade do |t|
+    t.integer "time", null: false
+    t.string "index_name", default: ""
+    t.string "index_type", default: ""
+    t.float "crowding_degree", default: 0.0
+    t.float "pe", default: 0.0
+    t.float "pb", default: 0.0
+    t.float "pb_percent", default: 0.0
+    t.integer "inside_fund", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["time"], name: "index_valuations_on_time", unique: true
   end
 
 end

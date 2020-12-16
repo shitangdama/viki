@@ -1,6 +1,8 @@
 class CreateSegments < ActiveRecord::Migration[6.0]
   def change
     create_table :segments do |t|
+      t.references :parent
+
       t.string :source,        default: "", null: false
       t.string :segment_type,  default: "", null: false
       t.string :key,           default: "", null: false

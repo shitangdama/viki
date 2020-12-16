@@ -51,6 +51,6 @@ namespace :test do
     task :segments => :environment do
         Rails.env = "development"
         segment = Crawler::Segment.new()
-        segment.get_or_update_segment()
+        segment.get_sina_segment()
     end
 end

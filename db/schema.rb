@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_12_13_093324) do
   end
 
   create_table "segments", force: :cascade do |t|
+    t.bigint "parent_id"
     t.string "source", default: "", null: false
     t.string "segment_type", default: "", null: false
     t.string "key", default: "", null: false
@@ -31,11 +32,16 @@ ActiveRecord::Schema.define(version: 2020_12_13_093324) do
     t.jsonb "info", default: {}
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["parent_id"], name: "index_segments_on_parent_id"
   end
 
   create_table "shares", force: :cascade do |t|
     t.string "code", default: "", null: false
     t.string "name", default: "", null: false
+    t.integer "concept", default: [], array: true
+    t.integer "region", default: [], array: true
+    t.integer "industry", default: [], array: true
+    t.integer "secondary_industry", default: [], array: true
     t.jsonb "info", default: {}
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -65,20 +71,6 @@ ActiveRecord::Schema.define(version: 2020_12_13_093324) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "valuations", force: :cascade do |t|
-    t.integer "time", null: false
-    t.string "index_name", default: ""
-    t.string "index_type", default: ""
-    t.float "crowding_degree", default: 0.0
-    t.float "pe", default: 0.0
-    t.float "pb", default: 0.0
-    t.float "pb_percent", default: 0.0
-    t.integer "inside_fund", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["time"], name: "index_valuations_on_time", unique: true
   end
 
 end

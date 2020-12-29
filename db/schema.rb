@@ -24,15 +24,15 @@ ActiveRecord::Schema.define(version: 2020_12_13_093324) do
   end
 
   create_table "segments", force: :cascade do |t|
-    t.bigint "parent_id"
     t.string "source", default: "", null: false
     t.string "segment_type", default: "", null: false
     t.string "key", default: "", null: false
     t.string "title", default: "", null: false
+    t.string "secondary_title", default: ""
+    t.integer "shares", default: [], array: true
     t.jsonb "info", default: {}
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["parent_id"], name: "index_segments_on_parent_id"
   end
 
   create_table "shares", force: :cascade do |t|

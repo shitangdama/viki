@@ -29,7 +29,6 @@ class Crawler::Segment
     def get_sina_segment
         segment = Base::Segment.new()
         result = segment.get_sina_segment()
-        source = "sina"
 
         data =  JSON.parse(result.body)
         sina_data = data[1][0][1][0][1]
@@ -38,36 +37,68 @@ class Crawler::Segment
 
         sw_data = data[1][0][1][1][1]
         sw_type = data[1][0][1][1][0]
-        p sw_data
 
-        # sina_data.each do |item|
-        #     segment = Segment.find_by(
-        #         key: item[2]
-        #     )
-        #     if segment.blank?
-        #         segment = Segment.new
-        #         segment.segment_type = sina_type
-        #         segment.key = item[2]
-        #         segment.title = item[0]
-        #         segment.source = source
-        #         segment.save()
-        #     end
-        # end
+        sw2_data = data[1][0][1][2][1]
+        sw2_type = data[1][0][1][2][0]
+        # # p sw2_data
+        # p sw2_type
+        sina_data.each do |item|
+            segment = Segment.find_by(
+                key: item[2]
+            )
+            if segment.blank?
+                segment = Segment.new
+                segment.segment_type = "sina"
+                segment.key = item[2]
+                segment.title = item[0]
+                segment.source = "sina"
+                segment.save()
+            end
+        end
 
         
-        # sw_data.each do |item|
-        #     segment = Segment.find_by(
-        #         key: item[2]
-        #     )
-        #     if segment.blank?
-        #         segment = Segment.new
-        #         segment.segment_type = sina_type
-        #         segment.key = item[2]
-        #         segment.title = item[0]
-        #         segment.source = source
-        #         segment.save()
-        #     end
-        # end
+        sw_data.each do |item|
+            segment = Segment.find_by(
+                key: item[2]
+            )
+            if segment.blank?
+                segment = Segment.new
+                segment.segment_type = "df"
+                segment.key = item[2]
+                segment.title = item[0]
+                segment.source = "sw"
+                segment.save()
+            end
+        end
 
+        sw2_data.each do |item|
+            segment = Segment.find_by(
+                key: item[3]
+            )
+            if segment.blank?
+                segment = Segment.new
+                segment.segment_type = "df"
+                segment.key = item[3]
+                segment.title = item[0]
+                segment.source = "sw"
+                segment.save()
+            end
+
+            item[1].each do |info|
+                segment = Segment.find_by(
+                    key: info[2]
+                )
+                if segment.blank?
+                    segment = Segment.new
+                    segment.segment_type = "df"
+                    segment.key = info[2]
+                    segment.title = item[0]
+                    segment.secondary_title = info[0]
+                    segment.title = info[0]
+                    segment.source = "sw2"
+                    segment.save()
+                end
+            end
+        end
     end
 end

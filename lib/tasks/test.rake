@@ -43,11 +43,12 @@ namespace :test do
         puts args
     end
 
-    task :shares => :environment do
+    # task :shares => :environment do
 
 
-    end
+    # end
 # RAILS_ENV=development  rake test:segments
+    desc "segments environment and variables"
     task :segments => :environment do
         Rails.env = "development"
         segment = Crawler::Segment.new()

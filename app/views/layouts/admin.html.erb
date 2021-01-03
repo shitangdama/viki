@@ -5,22 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="dama">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
     <%= javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
-    
   </head>
 
-  <body>
-    <div class="d-flex" id="wrapper">
-      <%= render 'partials/sidenav' %>
-      <div id="page-content-wrapper">
-        <%= render 'partials/nav' %>
-        <%= yield %>
-      </div>
-    </div>
+  <body class="bg-light">
+    <%= render 'partials/nav' %>
+    <%= render 'partials/linknav' %>
+    <main class="container">
+      <%= yield %>
+    </main>
   </body>
 </html>

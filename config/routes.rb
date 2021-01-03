@@ -13,11 +13,15 @@ Rails.application.routes.draw do
   resources :message
   namespace :admin do
     root to: 'message#index' 
-    resources :user do
+    resources :users do
     #   member do
     #     # get :articles_index
     #     # get :user_info
     # end
+    end
+
+    resources :segments do
+
     end
 
     resources :message

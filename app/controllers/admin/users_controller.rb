@@ -1,4 +1,4 @@
-class Admin::UserController < Admin::BaseController
+class Admin::UsersController < Admin::BaseController
   before_action :set_uesr, only: [:destroy]
 
   def index
